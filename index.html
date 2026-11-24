@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nacena Studios | Estúdio de gravação em São Paulo</title>
+  <meta name="description" content="Estúdio de gravação em São Paulo há 20 anos. Gravação, mix e master e audiovisual no Campo Belo, a 4 minutos de Congonhas. Gal Costa, Djavan, Liniker e IZA já passaram por aqui.">
+  <link rel="canonical" href="https://nacenastudios.com/">
+  <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nacena Studios">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Nacena Studios | Estúdio de gravação em São Paulo">
+  <meta property="og:description" content="Estúdio de gravação em São Paulo há 20 anos. Gravação, mix e master e audiovisual no Campo Belo, a 4 minutos de Congonhas. Gal Costa, Djavan, Liniker e IZA já passaram por aqui.">
+  <meta property="og:url" content="https://nacenastudios.com/">
+  <meta property="og:image" content="https://nacenastudios.com/video/nacena-poster.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0a09">
+  <!-- "Ficha" do estúdio para o Google (dados estruturados) -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "additionalType": "https://en.wikipedia.org/wiki/Recording_studio",
+  "name": "Nacena Studios",
+  "alternateName": [
+    "NaCena Studios",
+    "Trama NaCena",
+    "Estúdio NaCena"
+  ],
+  "description": "Estúdio de gravação em São Paulo há 20 anos: gravação, mix e master e audiovisual no Campo Belo, a 4 minutos do Aeroporto de Congonhas.",
+  "url": "https://nacenastudios.com/",
+  "image": "https://nacenastudios.com/video/nacena-poster.jpg",
+  "logo": "https://nacenastudios.com/img/nacena-logo.png",
+  "telephone": "+55-11-99936-5624",
+  "email": "atendimento@nacena.com.br",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua Dr. Jesuíno Maciel, 1859",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  },
+  "areaServed": "BR",
+  "sameAs": [
+    "https://www.instagram.com/studionacena",
+    "https://www.facebook.com/tramanacena/"
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Gravação de áudio"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Mixagem e masterização"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Gravação audiovisual"
+      }
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<!-- Home "clean": o vídeo fica no fundo da página inteira, só com a apresentação do estúdio por cima.
+     data-footer="none" = esta página não mostra o rodapé (site.js). -->
+<body class="home-clean" data-footer="none">
+<script src="/site.js"></script>
+
+<video id="hero-video" class="home-video" muted loop playsinline preload="none" poster="/video/nacena-poster.jpg" aria-label="Sessões de gravação no Nacena Studios"></video>
+<div class="home-shade" aria-hidden="true"></div>
+<button class="video-toggle" id="video-toggle" aria-label="Pausar vídeo" hidden>❚❚</button>
+
+<main class="home-main">
+  <section class="home-hero">
+    <div class="wrap">
+      <p class="eyebrow">Estúdio de gravação · São Paulo</p>
+      <h1 class="display">Nacena Studios</h1>
+      <p class="hero-sub">20 anos gravando música.</p>
+    </div>
+    <a class="home-scroll" href="#sobre" aria-label="Conheça o estúdio">↓</a>
+  </section>
+
+  <section class="home-story" id="sobre">
+    <div class="wrap">
+      <p class="home-lead" data-reveal>Um pouco sobre <span>a gente</span></p>
+      <div class="home-text" data-reveal>
+        <p>Há 20 anos o NaCena recebe artistas, bandas, orquestras e produtores que buscam o som certo e o ambiente certo para criar. Da voz e violão ao disco com orquestra, de um single a uma gravação ao vivo com vídeo, cada projeto encontra aqui o espaço, os equipamentos e a equipe para soar como deve.</p>
+      </div>
+      <!-- Artistas que passaram pelo estúdio (lista da primeira versão do site) -->
+      <div class="home-artists" data-reveal>
+        <p class="eyebrow">Artistas que passaram aqui…</p>
+        <div class="marquee artists-marquee"><p class="artists marquee-track" id="artists"></p></div>
+        <div class="artists-nav"><button type="button" data-dir="-1" aria-label="Voltar os nomes">←</button><button type="button" data-dir="1" aria-label="Avançar os nomes">→</button></div>
+      </div>
+      <p class="home-links" data-reveal>
+        <a class="link" href="/estudios.html">Conheça os estúdios</a>
+        <a class="link" href="/orcamento.html">Fale com o estúdio</a>
+      </p>
+      <!-- Contato e endereço (o rodapé da home foi removido, então ficam aqui) -->
+      <div class="home-contact" data-reveal>
+        <nav class="home-social" aria-label="Redes e contato">
+          <a id="hc-whats" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>
+            <span>WhatsApp</span></a>
+          <a href="https://instagram.com/studionacena" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2c-2.7 0-3 0-4.1.1a7.3 7.3 0 0 0-2.4.4 5 5 0 0 0-2.9 2.9 7.3 7.3 0 0 0-.4 2.4C2 8.9 2 9.3 2 12s0 3 .1 4.1a7.3 7.3 0 0 0 .4 2.4 5 5 0 0 0 2.9 2.9 7.3 7.3 0 0 0 2.4.4c1.1.1 1.4.1 4.1.1s3 0 4.1-.1a7.3 7.3 0 0 0 2.4-.4 5 5 0 0 0 2.9-2.9 7.3 7.3 0 0 0 .4-2.4c.1-1.1.1-1.4.1-4.1s0-3-.1-4.1a7.3 7.3 0 0 0-.4-2.4 5 5 0 0 0-2.9-2.9 7.3 7.3 0 0 0-2.4-.4C15 2 14.7 2 12 2Zm0 1.8c2.7 0 3 0 4 .1a5.4 5.4 0 0 1 1.8.3 3.2 3.2 0 0 1 1.9 1.9 5.4 5.4 0 0 1 .3 1.8c.1 1 .1 1.3.1 4s0 3-.1 4a5.4 5.4 0 0 1-.3 1.8 3.2 3.2 0 0 1-1.9 1.9 5.4 5.4 0 0 1-1.8.3c-1 .1-1.3.1-4 .1s-3 0-4-.1a5.4 5.4 0 0 1-1.8-.3 3.2 3.2 0 0 1-1.9-1.9 5.4 5.4 0 0 1-.3-1.8c-.1-1-.1-1.3-.1-4s0-3 .1-4a5.4 5.4 0 0 1 .3-1.8 3.2 3.2 0 0 1 1.9-1.9 5.4 5.4 0 0 1 1.8-.3c1-.1 1.3-.1 4-.1Z"/></svg>
+            <span>Instagram</span></a>
+          <a href="https://www.facebook.com/tramanacena/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4Z"/></svg>
+            <span>Facebook</span></a>
+          <a href="mailto:atendimento@nacena.com.br" aria-label="E-mail">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.4V17h16V7.4l-8 5.3-8-5.3ZM5.6 7 12 11.2 18.4 7H5.6Z"/></svg>
+            <span>E-mail</span></a>
+        </nav>
+        <a class="home-address" href="https://maps.google.com/?q=Rua+Dr.+Jesu%C3%ADno+Maciel+1859+S%C3%A3o+Paulo" target="_blank" rel="noopener">Rua Dr. Jesuíno Maciel, 1859 · Campo Belo, São Paulo</a>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+  document.getElementById("hc-whats").href = WHATS;
+  const ARTISTS = ["Anavitória", "Banda Mantiqueira", "Ben Harper", "Capital Inicial", "Céu", "Claudio Zoli", "Criolo", "Daniel D'Alcântara", "Earth, Wind & Fire", "Edu Ribeiro", "Fábio Jr.", "Gal Costa", "Herbie Hancock", "Ivan Lins", "Ivete Sangalo", "Jair Rodrigues", "João Bosco", "João Carlos Martins", "Jorginho Neto", "Julia Mestre", "Kanye West", "Liniker", "Luciana Mello", "Luísa Sonza", "Maestro Alexandre Guerra", "Maestro Octavio de Moraes", "Maestro Ruriá Duprat", "Mano Brown", "Matuê", "Nailor Proveta", "Nando Reis", "Pabllo Vittar", "Paulinho da Costa", "Pitty", "Racionais MC's", "Rubel", "Samuel Rosa", "Seu Jorge", "Sidiel Vieira", "Sidmar Vieira", "Tatiana Parra", "Thiago Espírito Santo", "Thiaguinho", "Titãs", "Toquinho", "Vanessa da Mata", "Zezé de Camargo", "Zizi Possi", "IZA", "João Gomes", "Ferrugem"];
+  // Faixa que passa sozinha: a lista aparece duas vezes para o loop não ter emenda.
+  const line = ARTISTS.map((a, i) => (i % 3 === 1 ? `<b>${esc(a)}</b>` : esc(a)) + "<i>•</i>").join("");
+  document.getElementById("artists").innerHTML = `<span>${line}</span><span aria-hidden="true">${line}</span>`;
+  // Setas ← →: cada toque desliza a faixa um trecho (uns 2 nomes) para trás ou para frente;
+  // segurando, continua deslizando. Depois a faixa segue andando sozinha.
+  const track = document.getElementById("artists");
+  const anim = () => track.getAnimations()[0];
+  function slide(dir) {
+    const a = anim(); if (!a) return;
+    const total = a.effect.getComputedTiming().duration, half = track.scrollWidth / 2;
+    const delta = dir * Math.min(innerWidth * 0.45, 420) / half * total; // trecho em tempo de animação
+    const from = a.currentTime, t0 = performance.now(), ms = 450;
+    const step = (now) => {
+      const k = Math.min(1, (now - t0) / ms), ease = 1 - Math.pow(1 - k, 3);
+      a.currentTime = (((from + delta * ease) % total) + total) % total;
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  document.querySelectorAll(".artists-nav button").forEach((b) => {
+    let timer;
+    const stop = () => clearInterval(timer);
+    b.addEventListener("pointerdown", () => { slide(+b.dataset.dir); stop(); timer = setInterval(() => slide(+b.dataset.dir), 480); });
+    ["pointerup", "pointerleave", "pointercancel"].forEach((ev) => b.addEventListener(ev, stop));
+    b.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); slide(+b.dataset.dir); } });
+  });
+</script>
+
+</body>
+</html>

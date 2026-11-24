@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contato e orçamento | Nacena Studios</title>
+  <meta name="description" content="Peça um orçamento para gravar, mixar ou masterizar no Nacena Studios, em São Paulo. Resposta pelo WhatsApp com valores e datas.">
+  <link rel="canonical" href="https://nacenastudios.com/orcamento.html">
+  <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nacena Studios">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Contato e orçamento | Nacena Studios">
+  <meta property="og:description" content="Peça um orçamento para gravar, mixar ou masterizar no Nacena Studios, em São Paulo. Resposta pelo WhatsApp com valores e datas.">
+  <meta property="og:url" content="https://nacenastudios.com/orcamento.html">
+  <meta property="og:image" content="https://nacenastudios.com/video/nacena-poster.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0a09">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="home-clean video-page">
+<script src="/site.js"></script>
+
+<video id="hero-video" class="home-video" muted loop playsinline preload="none" poster="/video/nacena-poster.jpg" aria-hidden="true"></video>
+<div class="home-shade" aria-hidden="true"></div>
+<button class="video-toggle" id="video-toggle" aria-label="Pausar vídeo" hidden>❚❚</button>
+
+<section class="page-top home-main contact-cool">
+  <div class="wrap">
+    <header class="cc-head" data-reveal>
+      <p class="eyebrow">Contato</p>
+      <h1 class="display">Vamos gravar?</h1>
+      <p class="lead">Conta o que você tem em mente e a gente te responde no <a class="cc-whats" id="cc-whats" target="_blank" rel="noopener">WhatsApp</a> com orçamento e datas.</p>
+    </header>
+
+    <form class="cc-form" id="form" novalidate data-reveal>
+      <div class="field-row">
+        <div class="field"><label for="name">Seu nome</label><input id="name" required autocomplete="name"></div>
+        <div class="field"><label for="phone">Seu WhatsApp</label><input id="phone" required inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000"></div>
+      </div>
+      <div class="field"><label for="email">E-mail</label><input id="email" type="email" autocomplete="email"></div>
+
+      <div class="field">
+        <label>O que você quer fazer?</label>
+        <div class="pick" id="service">
+          <!-- Por enquanto só serviços presenciais (online e produção musical saíram do site). -->
+          <button type="button">Gravação</button>
+          <button type="button">Audiovisual</button>
+          <button type="button">Mixagem</button>
+          <button type="button">Masterização</button>
+          <button type="button">Outro</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Qual estúdio?</label>
+        <div class="pick" id="room">
+          <button type="button" data-v="A">Estúdio A</button>
+          <button type="button" data-v="C">Estúdio C</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Quando? <small>(toque em quantos dias quiser)</small></label>
+        <div class="cal" id="cal">
+          <div class="cal-head">
+            <button type="button" class="cal-nav" data-step="-1" aria-label="Mês anterior">‹</button>
+            <strong id="cal-title"></strong>
+            <button type="button" class="cal-nav" data-step="1" aria-label="Próximo mês">›</button>
+          </div>
+          <div class="cal-week"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+          <div class="cal-days" id="cal-days"></div>
+          <p class="cal-picked" id="cal-picked"></p>
+        </div>
+      </div>
+      <div class="field">
+        <label>Por quanto tempo? <small>(por dia, mínimo de 6 horas)</small></label>
+        <div class="pick" id="hours">
+          <button type="button">6 horas</button>
+          <button type="button">8 horas</button>
+          <button type="button">12 horas</button>
+        </div>
+      </div>
+
+      <div class="field"><label for="message">Conta pra gente mais do seu projeto:</label>
+        <textarea id="message" rows="3"></textarea></div>
+
+      <button class="btn lg cc-send" type="submit">Mandar no WhatsApp ↗</button>
+      <div class="error" id="err"></div>
+    </form>
+
+    <p class="cc-alt" data-reveal>Prefere conversar direto? <a class="link" id="whats-link" target="_blank" rel="noopener">Chama no WhatsApp</a></p>
+  </div>
+</section>
+
+<script>
+  document.getElementById("whats-link").href = WHATS;
+  document.getElementById("cc-whats").href = WHATS;
+  // ---------- calendário: dias avulsos (a partir de hoje) ----------
+  // Cada toque marca/desmarca um dia. Dias seguidos aparecem juntos no resumo ("10 a 12/11").
+  const days = new Set();
+  const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const brDate = (s) => s.split("-").reverse().join("/");
+  const nextDay = (s) => { const d = new Date(s + "T12:00"); d.setDate(d.getDate() + 1); return iso(d); };
+  const pickedText = () => {
+    const list = [...days].sort(), out = [];
+    for (let i = 0; i < list.length; i++) {
+      let j = i;
+      while (j + 1 < list.length && list[j + 1] === nextDay(list[j])) j++;
+      out.push(j > i ? `${brDate(list[i])} a ${brDate(list[j])}` : brDate(list[i]));
+      i = j;
+    }
+    return out.join(", ");
+  };
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  let view = new Date(today.getFullYear(), today.getMonth(), 1);
+  const MONTHS = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  function drawCal() {
+    document.getElementById("cal-title").textContent = `${MONTHS[view.getMonth()]} ${view.getFullYear()}`;
+    const first = view.getDay(), total = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+    let html = "<span></span>".repeat(first);
+    for (let d = 1; d <= total; d++) {
+      const date = new Date(view.getFullYear(), view.getMonth(), d), key = iso(date);
+      const cls = [days.has(key) ? "on" : "", +date === +today ? "today" : ""].filter(Boolean).join(" ");
+      html += `<button type="button" data-d="${key}" ${date < today ? "disabled" : ""} class="${cls}">${d}</button>`;
+    }
+    document.getElementById("cal-days").innerHTML = html;
+    document.querySelector('.cal-nav[data-step="-1"]').disabled = view <= new Date(today.getFullYear(), today.getMonth(), 1);
+    const n = days.size;
+    document.getElementById("cal-picked").textContent = n ? `${n} ${n === 1 ? "dia" : "dias"}: ${pickedText()}` : "";
+  }
+  document.getElementById("cal").addEventListener("click", (e) => {
+    const nav = e.target.closest(".cal-nav"), day = e.target.closest("[data-d]");
+    if (nav) { view = new Date(view.getFullYear(), view.getMonth() + +nav.dataset.step, 1); drawCal(); }
+    if (day) {
+      const k = day.dataset.d;
+      days.has(k) ? days.delete(k) : days.add(k);
+      drawCal();
+    }
+  });
+  drawCal();
+  const form = document.getElementById("form");
+  const chosen = { service: "", room: "", hours: "" };
+
+  // botões de escolha única
+  for (const id of ["service", "room", "hours"]) {
+    const box = document.getElementById(id);
+    box.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      box.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+      chosen[id] = b.dataset.v ?? b.textContent;
+    });
+  }
+  // ao preencher um campo marcado como faltando, tira a marca
+  form.addEventListener("input", (e) => e.target.closest(".field")?.classList.remove("missing"));
+  form.addEventListener("click", (e) => e.target.closest(".pick button") && e.target.closest(".field").classList.remove("missing"));
+  // vindo da página de uma sala (?sala=A) já marca a sala
+  const pre = new URLSearchParams(location.search).get("sala");
+  if (pre) document.querySelector(`#room button[data-v="${CSS.escape(pre.toUpperCase())}"]`)?.click();
+  // vindo da página de serviços (?servico=Mixagem) já marca o serviço
+  const svc = new URLSearchParams(location.search).get("servico");
+  if (svc) [...document.querySelectorAll("#service button")].find((b) => b.textContent === svc)?.click();
+
+  // ---------- aviso por e-mail ----------
+  // Os pedidos chegam neste e-mail pelo FormSubmit (formsubmit.co, grátis, sem cadastro).
+  // No 1º pedido o FormSubmit manda um e-mail de ATIVAÇÃO para este endereço: é preciso clicar no link uma vez.
+  const NOTIFY_EMAIL = "nacenaestudios@gmail.com";
+  async function sendEmail(fields) {
+    const r = await fetch(`https://formsubmit.co/ajax/${NOTIFY_EMAIL}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ ...fields, _template: "table", _captcha: "false" }),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok || data.success === "false" || data.success === false) throw new Error(data.message || "Falha no e-mail");
+    return data;
+  }
+
+  form.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const v = (id) => document.getElementById(id).value.trim();
+    const err = document.getElementById("err");
+    const btn = form.querySelector('button[type="submit"]');
+    // Diz exatamente o que falta e marca os campos (some ao preencher).
+    const missing = [
+      [!v("name"), "seu nome", "name"],
+      [v("phone").replace(/\D/g, "").length < 8, v("phone") ? "um WhatsApp válido (com DDD)" : "seu WhatsApp", "phone"],
+      [!chosen.service, "o que você quer fazer", "service"],
+    ].filter(([miss]) => miss);
+    document.querySelectorAll(".cc-form .missing").forEach((el) => el.classList.remove("missing"));
+    if (missing.length) {
+      const names = missing.map(([, label]) => label);
+      err.textContent = `Falta ${names.length > 1 ? names.slice(0, -1).join(", ") + " e " + names.at(-1) : names[0]}.`;
+      missing.forEach(([, , id]) => document.getElementById(id).closest(".field").classList.add("missing"));
+      document.getElementById(missing[0][2]).closest(".field").scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    // Resumo completo do pedido, que já vai pronto para o WhatsApp do estúdio.
+    // Mensagem pronta para o WhatsApp (o *texto* fica em negrito no WhatsApp). Só entra o que a pessoa preencheu.
+    const linhas = [
+      ["Nome", v("name")],
+      ["Serviço", chosen.service],
+      ["Estúdio", chosen.room ? `Estúdio ${chosen.room}` : ""],
+      ["Datas", pickedText()],
+      ["Duração", chosen.hours ? `${chosen.hours} por dia` : ""],
+      ["E-mail", v("email")],
+      ["Sobre o projeto", v("message")],
+    ].filter(([, val]) => val).map(([k, val]) => `*${k}:* ${val}`).join("\n");
+    const resumo = `Olá, tudo bem? Vim pelo site e gostaria de um orçamento!\n\n*Orçamento detalhado*\n${linhas}`;
+    const whatsUrl = `https://wa.me/5511999365624?text=${encodeURIComponent(resumo)}`;
+    // Abre o WhatsApp na hora do clique (antes de qualquer espera, senão o navegador bloqueia a janela).
+    // A pessoa só precisa tocar em "enviar" lá. O e-mail para a equipe segue em paralelo.
+    window.open(whatsUrl, "_blank", "noopener");
+    btn.disabled = true; btn.textContent = "Enviando…"; err.textContent = "";
+    try {
+      // 1) e-mail para a equipe (FormSubmit, grátis) e 2) cópia no banco do site, quando houver servidor.
+      //    Os dois seguem em segundo plano: a confirmação aparece em no máximo 3 s, mesmo se o FormSubmit
+      //    estiver lento (o WhatsApp já abriu, então o pedido não se perde).
+      const pending = Promise.allSettled([
+        sendEmail({
+          _subject: `Novo pedido pelo site: ${v("name")} (${chosen.service})`,
+          Nome: v("name"), WhatsApp: v("phone"), "E-mail": v("email") || "-", Serviço: chosen.service,
+          Estúdio: chosen.room ? `Estúdio ${chosen.room}` : "-", Período: pickedText() || "-",
+          "Duração por dia": chosen.hours || "-", Projeto: v("message") || "-",
+          _replyto: v("email") || undefined,
+        }),
+        api("/api/quotes", {
+          method: "POST",
+          body: JSON.stringify({
+            name: v("name"), phone: v("phone"), email: v("email"), service: chosen.service, room: chosen.room,
+            date: pickedText(), hours: chosen.hours, is_company: false, message: v("message"),
+          }),
+        }),
+      ]);
+      await Promise.race([pending, new Promise((r) => setTimeout(r, 3000))]);
+      // Mesmo se o e-mail falhar, o pedido já foi aberto no WhatsApp: mostra a confirmação.
+      form.innerHTML = `
+        <div class="cc-done">
+          <h2>Quase lá, ${esc(v("name").split(" ")[0])}!</h2>
+          <p class="lead">Abrimos o WhatsApp do estúdio com o seu pedido já escrito. É só tocar em enviar por lá.</p>
+          <p style="margin-top:22px"><a class="btn lg cc-send" target="_blank" rel="noopener" href="${whatsUrl}">Abrir o WhatsApp de novo ↗</a></p>
+        </div>`;
+    } catch (e) {
+      err.textContent = e.message; btn.disabled = false; btn.textContent = "Mandar no WhatsApp ↗";
+    }
+  });
+</script>
+</body>
+</html>

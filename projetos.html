@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gravado aqui: discos e sessões | Nacena Studios</title>
+  <meta name="description" content="Discos, singles e sessões gravados no Nacena Studios, em São Paulo: Gal Costa, Djavan, Elis Regina, Liniker, IZA, Froid, Terno Rei e muitos outros.">
+  <link rel="canonical" href="https://nacenastudios.com/projetos.html">
+  <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nacena Studios">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Gravado aqui: discos e sessões | Nacena Studios">
+  <meta property="og:description" content="Discos, singles e sessões gravados no Nacena Studios, em São Paulo: Gal Costa, Djavan, Elis Regina, Liniker, IZA, Froid, Terno Rei e muitos outros.">
+  <meta property="og:url" content="https://nacenastudios.com/projetos.html">
+  <meta property="og:image" content="https://nacenastudios.com/video/nacena-poster.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0a09">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-header="solid">
+<script src="/site.js"></script>
+<script src="/projetos.js"></script>
+<script src="/discografia.js"></script>
+
+<section class="page-top">
+  <div class="wrap">
+    <div data-reveal>
+      <p class="eyebrow">Projetos e discografia</p>
+      <h1 class="display" style="font-size:clamp(30px,9vw,96px)">Gravado aqui</h1>
+      <p class="lead">Alguns dos discos, singles e sessões que nasceram aqui.</p>
+    </div>
+    <div class="proj-tools">
+      <div class="field disco-search"><label for="q" class="sr-only">Buscar projetos</label>
+        <input id="q" type="search" placeholder="Buscar artista ou disco…" autocomplete="off"></div>
+      <div class="chips" id="sort">
+        <button class="chip on" data-sort="popular">Mais populares</button>
+        <button class="chip" data-sort="recent">Mais recentes</button>
+      </div>
+    </div>
+    <div class="disco-grid" id="list"></div>
+  </div>
+</section>
+
+<script>
+  // Junta os destaques (projetos.js) com a discografia do Discogs (discografia.js) numa lista só.
+  const norm = (t) => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const highlighted = new Set(PROJECTS.flatMap((p) => [norm(`${p.artist}|${p.title}`), p.album ? norm(`${p.artist}|${p.album}`) : ""]));
+  const ITEMS = [
+    ...PROJECTS.map((p) => ({
+      artist: p.artist, title: p.title, album: p.album, year: p.year || 0, cover: PHOTO(p.cover, 600, 600),
+      info: [p.room ? `Estúdio ${p.room}` : "", (p.services || []).join(", ")].filter(Boolean).join(" · "),
+      note: p.note, guests: p.guests || [], link: p.link, linkLabel: "Ouvir ↗", popularity: p.popularity || 0,
+    })),
+    ...DISCOGRAPHY.filter((d) => !highlighted.has(norm(`${d.artist}|${d.title}`))).map((d) => ({
+      artist: d.artist, title: d.title, year: d.year || 0, cover: d.cover,
+      info: d.roles.join(" · "), link: d.discogs, linkLabel: "Discogs ↗", popularity: d.popularity || 0,
+    })),
+  ];
+
+  const list = document.getElementById("list"), q = document.getElementById("q");
+  let sort = "popular";
+  function draw() {
+    const term = norm(q.value.trim());
+    const rows = ITEMS.filter((d) => !term || norm(`${d.artist} ${d.title} ${d.album || ""} ${(d.guests || []).join(" ")}`).includes(term))
+      .sort((a, b) => sort === "popular" ? b.popularity - a.popularity || b.year - a.year : b.year - a.year || b.popularity - a.popularity);
+    list.innerHTML = rows.length ? rows.map((d) => `
+      <a class="disco-card" href="${esc(d.link)}" target="_blank" rel="noopener"${d.guests && d.guests.length ? ` title="Convidados: ${esc(d.guests.join(", "))}"` : ""}>
+        <div class="cover">${d.cover
+          ? `<img src="${esc(d.cover)}" alt="Capa de ${esc(d.title)}" loading="lazy" decoding="async">`
+          : `<div class="no-cover"><span>${esc(d.artist)}</span></div>`}<span class="go">${d.linkLabel}</span></div>
+        <b>${esc(d.artist)}</b>
+        <span>${esc(d.title)}${d.album ? ` · álbum ${esc(d.album)}` : ""}</span>
+        <small>${[d.year || "", d.info].filter(Boolean).map(esc).join(" · ")}</small>
+        ${d.note ? `<small class="note">${esc(d.note)}</small>` : ""}
+      </a>`).join("") : `<p class="lead">Nenhum projeto encontrado para “${esc(q.value)}”.</p>`;
+  }
+  q.addEventListener("input", draw);
+  document.getElementById("sort").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-sort]"); if (!b) return;
+    sort = b.dataset.sort;
+    document.querySelectorAll("#sort .chip").forEach((c) => c.classList.toggle("on", c === b));
+    draw();
+  });
+  draw();
+</script>
+</body>
+</html>

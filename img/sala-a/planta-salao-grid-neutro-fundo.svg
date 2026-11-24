@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="440" viewBox="0 0 680 440" font-family="Rubik, Helvetica, Arial, sans-serif">
+  <!-- Desenho SIMPLIFICADO do salão da Sala A, baseado na planta WSDG A1.14. Medidas aproximadas. -->
+  <rect width="680" height="440" fill="#0b0a09"/>
+
+  <!-- Técnica A (à esquerda) -->
+  <path d="M40 130 L120 110 L168 180 L178 212 L168 244 L120 314 L40 294 Z" fill="#1d1a17" stroke="#4a443e" stroke-width="2"/>
+  <text x="92" y="216" fill="#a39d95" font-size="13" text-anchor="middle">Técnica A</text>
+
+
+  <!-- Salão -->
+  <path d="M200 46 L620 46 L620 386 L150 386 L120 314 L168 244 L178 212 L168 180 L120 110 Z"
+        fill="#24201c" stroke="#e9e6e1" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Visor para a técnica -->
+  <path d="M168 180 L178 212 L168 244" fill="none" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
+  <!-- Visores na parede direita -->
+  <line x1="620" y1="99" x2="620" y2="172" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
+  <line x1="620" y1="260" x2="620" y2="333" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
+  <!-- Visor no alto -->
+  <line x1="262" y1="46" x2="324" y2="46" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Portas acústicas (aberturas) -->
+  <line x1="148" y1="80" x2="170" y2="63" stroke="#24201c" stroke-width="7"/>
+  <line x1="129" y1="336" x2="139" y2="360" stroke="#24201c" stroke-width="7"/>
+  <line x1="392" y1="46" x2="430" y2="46" stroke="#24201c" stroke-width="7"/>
+  <path d="M148 80 A26 26 0 0 0 170 63" fill="none" stroke="#6f6962" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+
+  <!-- Grids de iluminação (ILUSTRATIVO, a partir de foto): grid duplo perto da técnica e grid simples ao lado.
+       Capacidade total de 2.000 kg. -->
+  <defs>
+    <pattern id="truss" width="14" height="14" patternUnits="userSpaceOnUse">
+      <path d="M0 14 L7 0 L14 14" fill="none" stroke="#bdb6ad" stroke-width="1.2"/>
+    </pattern>
+  </defs>
+  <g opacity=".85" fill="none" stroke="#bdb6ad" stroke-width="1.5">
+    <!-- grid duplo (retângulo dividido ao meio) -->
+    <rect x="268" y="156" width="158" height="158" stroke="url(#truss)" stroke-width="12"/>
+    <line x1="347" y1="162" x2="347" y2="308" stroke="url(#truss)" stroke-width="12"/>
+    <rect x="262" y="150" width="170" height="170" rx="2"/>
+    <rect x="274" y="162" width="67" height="146" rx="1"/>
+    <rect x="353" y="162" width="67" height="146" rx="1"/>
+    <!-- grid simples -->
+    <rect x="462" y="156" width="84" height="158" stroke="url(#truss)" stroke-width="12"/>
+    <rect x="456" y="150" width="96" height="170" rx="2"/>
+    <rect x="468" y="162" width="72" height="146" rx="1"/>
+  </g>
+
+  <!-- Rótulos do salão -->
+  <text x="407" y="104" fill="#ffffff" font-size="26" font-weight="700" text-anchor="middle" letter-spacing="1">SALÃO</text>
+  <text x="407" y="127" fill="#d9d4cd" font-size="15" font-weight="500" text-anchor="middle">120 m²</text>
+
+  <!-- Cotas -->
+  <line x1="645" y1="46" x2="645" y2="386" stroke="#6f6962" stroke-width="1"/>
+  <line x1="639" y1="46" x2="651" y2="46" stroke="#6f6962"/><line x1="639" y1="386" x2="651" y2="386" stroke="#6f6962"/>
+  <text x="660" y="220" fill="#a39d95" font-size="12" text-anchor="middle" transform="rotate(90 660 220)">≈ 9,4 m</text>
+  <line x1="150" y1="410" x2="620" y2="410" stroke="#6f6962" stroke-width="1"/>
+  <line x1="150" y1="404" x2="150" y2="416" stroke="#6f6962"/><line x1="620" y1="404" x2="620" y2="416" stroke="#6f6962"/>
+  <text x="385" y="430" fill="#a39d95" font-size="12" text-anchor="middle">≈ 12 a 13,5 m</text>
+
+  <!-- Legenda -->
+  <line x1="214" y1="364" x2="234" y2="364" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
+  <text x="242" y="368" fill="#a39d95" font-size="11">visores acústicos</text>
+  <rect x="356" y="359" width="20" height="10" fill="none" stroke="#bdb6ad" stroke-width="1.5"/>
+  <text x="384" y="368" fill="#a39d95" font-size="11">grids de iluminação (ilustrativo)</text>
+</svg>

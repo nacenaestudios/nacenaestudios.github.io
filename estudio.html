@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estúdios | Nacena Studios</title>
+  <meta name="description" content="Estúdio de gravação do Nacena Studios, em São Paulo.">
+  <link rel="canonical" href="https://nacenastudios.com/estudios.html">
+  <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nacena Studios">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Estúdios | Nacena Studios">
+  <meta property="og:description" content="Estúdio de gravação do Nacena Studios, em São Paulo.">
+  <meta property="og:url" content="https://nacenastudios.com/estudios.html">
+  <meta property="og:image" content="https://nacenastudios.com/video/nacena-poster.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0a09">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<script src="/site.js"></script>
+<script src="/estudios.js"></script>
+<main id="root"></main>
+<script>
+  const slug = location.pathname.split("/").filter(Boolean).pop();
+  const s = STUDIOS.find((x) => x.slug === slug);
+  const root = document.getElementById("root");
+
+  if (!s) {
+    root.innerHTML = `<div class="wrap page-top"><h1 class="h-section">Estúdio não encontrado</h1><p><a class="link" href="/estudios.html">Ver todos os estúdios</a></p></div>`;
+  } else {
+    document.title = `${s.name} — ${s.tagline} | Nacena Studios`;
+    const others = STUDIOS.filter((x) => x.slug !== s.slug);
+    // Galeria: miniaturas que abrem o visualizador (zoom + arrastar). Todas as fotos são 1800×1012.
+    const shots = (photos) => `<div class="room-gallery">${photos.map(([src, alt], i) => `
+      <a class="shot ${i === 0 ? "big" : ""}" href="${esc(PHOTO(src, 1800, 1012))}" data-pswp-width="1800" data-pswp-height="1012" data-reveal>
+        <img src="${esc(PHOTO(src, 1800, 1012))}" alt="${esc(alt)}" loading="lazy" decoding="async"></a>`).join("")}</div>`;
+    const gal = s.galleries || [];
+    let tecnica = gal.filter((g) => g.kind === "tecnica");
+    if (!tecnica.length) {
+      const ph = s.photos.filter((p) => !p.includes("foto-em-breve"));
+      if (ph.length) tecnica = [{ title: "A Técnica", photos: ph.map((id) => [id, s.name]) }];
+    }
+    const gravacao = gal.filter((g) => g.kind === "gravacao");
+    const plans = gal.filter((g) => g.plan).map((g) => g.plan);
+    // Ordem pedida: especificações → 1ª foto → planta baixa → demais fotos (técnica e depois salas).
+    const allPhotos = [...tecnica, ...gravacao].flatMap((g) => g.photos);
+    root.innerHTML = `
+      <header class="wrap page-top room-top">
+        <a class="back" href="/estudios.html">← Todos os estúdios</a>
+        <h1 class="room-title${s.unavailable ? " off" : ""}">${esc(s.name)}</h1>
+        ${s.unavailable ? `<p class="room-off">${esc(s.tagline)} · Indisponível no momento</p>` : ""}
+      </header>
+
+      <section class="room-page">
+        <div class="wrap">
+
+          ${s.specs ? `
+            <div class="gear gear-top" id="equipamentos">
+              <h2 class="room-h" data-reveal>Especificações</h2>
+              <div class="gear-cols">${s.specs.groups.map(([g, items]) => `
+                <div class="gear-group" data-reveal><h3>${esc(g)}</h3>${items.map((i) => `<p>${esc(i)}</p>`).join("")}</div>`).join("")}
+              </div>
+            </div>` : ""}
+
+          ${allPhotos.length ? `<div class="room-photos">${shots(allPhotos.slice(0, 1))}</div>` : ""}
+
+          ${plans.length ? `
+            <h2 class="room-h" data-reveal>Planta baixa</h2>
+            ${plans.map(([src, alt]) => `
+              <figure class="plan-fig room-plan" data-reveal><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">
+                <figcaption>Planta simplificada, fora de escala. Medidas aproximadas.</figcaption></figure>`).join("")}` : ""}
+
+          ${allPhotos.length > 1 ? `
+            <h2 class="room-h" data-reveal>Galeria</h2>
+            <div class="room-photos room-photos-after">${shots(allPhotos.slice(1))}</div>` : ""}
+
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="row-head" data-reveal><h2 class="h-section">Outros estúdios</h2></div>
+          <nav class="st-names st-names-sm" id="others" aria-label="Outros estúdios">${others.map((o) =>
+            `<a href="/estudios/${o.slug}" class="${o.unavailable ? "off" : ""}"><span>${esc(o.name)}</span><i aria-hidden="true">↗</i>${
+              o.unavailable ? "<small>indisponível no momento</small>" : ""}</a>`).join("")}</nav>
+        </div>
+      </section>`;
+    enhance(document.getElementById("others"));
+
+  }
+</script>
+<script type="module">
+  // Visualizador de fotos: pinça/roda do mouse/duplo clique para zoom, arrastar para passar.
+  import PhotoSwipeLightbox from "https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js";
+  document.querySelectorAll(".room-gallery").forEach((gallery) => {
+    const lightbox = new PhotoSwipeLightbox({
+      gallery, children: "a",
+      pswpModule: () => import("https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.esm.min.js"),
+      wheelToZoom: true, secondaryZoomLevel: 2.5, maxZoomLevel: 4, bgOpacity: 0.94,
+      imageClickAction: "zoom", tapAction: "toggle-controls", doubleTapAction: "zoom",
+      closeTitle: "Fechar", zoomTitle: "Zoom", arrowPrevTitle: "Anterior", arrowNextTitle: "Próxima",
+    });
+    lightbox.on("uiRegister", () => {
+      lightbox.pswp.ui.registerElement({
+        name: "legenda", order: 9, isButton: false, appendTo: "root",
+        onInit: (el, pswp) => pswp.on("change", () => {
+          el.textContent = pswp.currSlide.data.element?.querySelector("img")?.alt || "";
+        }),
+      });
+    });
+    lightbox.init();
+  });
+</script>
+</body>
+</html>

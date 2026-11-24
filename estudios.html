@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estúdios de gravação em São Paulo | Nacena Studios</title>
+  <meta name="description" content="Conheça os estúdios do Nacena Studios, em São Paulo: o Estúdio A, com salão de 120 m² e piano Yamaha C7, e o Estúdio C, com console SSL AWS.">
+  <link rel="canonical" href="https://nacenastudios.com/estudios.html">
+  <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nacena Studios">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Estúdios de gravação em São Paulo | Nacena Studios">
+  <meta property="og:description" content="Conheça os estúdios do Nacena Studios, em São Paulo: o Estúdio A, com salão de 120 m² e piano Yamaha C7, e o Estúdio C, com console SSL AWS.">
+  <meta property="og:url" content="https://nacenastudios.com/estudios.html">
+  <meta property="og:image" content="https://nacenastudios.com/video/nacena-poster.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0a09">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<script src="/site.js"></script>
+<script src="/estudios.js"></script>
+
+<!-- Página geral dos estúdios (referência: powerstation.nyc/studios-1).
+     Textos e fotos vêm de estudios.js; aqui só muda o texto de abertura. -->
+<section class="st-hero">
+  <video id="hero-video" muted loop playsinline preload="none" poster="/video/nacena-poster.jpg" aria-label="Sessões de gravação no NaCena Studios"></video>
+  <button class="video-toggle" id="video-toggle" aria-label="Pausar vídeo" hidden>❚❚</button>
+  <a class="st-hero-cap wrap" href="#st-list"><h1>Estúdios</h1><span aria-hidden="true">↓</span></a>
+</section>
+
+
+<!-- Lista enxuta: só o nome de cada estúdio, centralizado. Ao clicar, abre a página dele
+     (/estudios/sala-x) com fotos, equipamentos e planta. -->
+<section class="st-pick" id="st-list">
+  <nav class="wrap st-names" id="st-cards" aria-label="Estúdios"></nav>
+</section>
+
+<script>
+  document.getElementById("st-cards").innerHTML = STUDIOS.map((s) => `
+    <a href="/estudios/${s.slug}" data-reveal class="${s.unavailable ? "off" : ""}"><span>${esc(s.name)}</span><i aria-hidden="true">↗</i>${
+      s.unavailable ? `<small>${esc(s.tagline)} · indisponível no momento</small>` : ""}</a>`).join("");
+</script>
+</body>
+</html>
