@@ -134,6 +134,16 @@ const STUDIOS = [
           ["/img/wix/a5086254823f418a991b002b16671f2f.jpg", "Janela da sala de gravação C"],
         ],
       },
+      {
+        title: "Estúdio D (booth extra)",
+        kind: "gravacao",
+        photos: [
+          ["/img/sala-c/estudio-d-porta.jpg", "Porta do Estúdio D, booth extra de gravação do Estúdio C"],
+          ["/img/sala-c/estudio-d-janela.jpg", "Estúdio D com porta acústica e janela"],
+          ["/img/sala-c/estudio-d-painel.jpg", "Painel acústico de madeira do Estúdio D"],
+          ["/img/sala-c/estudio-d-sofa.jpg", "Sofá e acabamento em madeira do Estúdio D"],
+        ],
+      },
     ],
   },
   {
