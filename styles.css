@@ -1163,4 +1163,4 @@ body:not([data-area="cursos"]) .site-footer { padding: 24px 0; }
 .cc-form .field.missing input { border-bottom-color: var(--accent); }
 
 /* Títulos de serviço que quebram em 2 linhas (ex.: "Gravação Multitrack"): espaço para o Ç não encostar na linha de baixo */
-.svc-index h2 { line-height: 1.2; }
+.video-page .svc-index h2 { line-height: 1.12; }
