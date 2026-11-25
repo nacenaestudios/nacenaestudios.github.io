@@ -110,7 +110,7 @@ const STUDIOS = [
         ["Gravação", ["Pro Tools Ultimate", "Antelope Galaxy 32 Synergy Core", "Mac Studio M2 Ultra — 64 GB RAM, 1 TB"]],
         ["Software", ["Ableton Live Suite 12", "Logic Pro"]],
         ["Monitoração", ["Genelec 1032A", "Genelec 1031A"]],
-        ["Sala de gravação", ["≈ 12 m², com luz natural (janela para o jardim)", "Projeto acústico WSDG com piso flutuante", "Estrutura para vídeo"]],
+        ["Sala de gravação", ["≈ 12 m², com luz natural (janela para o jardim)", "Booth extra: Estúdio D (≈ 9 m²), com visor para a sala", "Projeto acústico WSDG com piso flutuante", "Estrutura para vídeo"]],
       ],
     },
     galleries: [
@@ -126,7 +126,7 @@ const STUDIOS = [
         title: "A sala de gravação",
         kind: "gravacao",
         text: "Piso de madeira, painéis em tecido, visor para a técnica e uma janela ampla para o jardim.",
-        plan: ["/img/sala-c/planta-sala-c-neutro-fundo.svg", "Desenho simplificado do Estúdio C: técnica, sala de gravação, sound lock, visor entre as salas e janelas para o jardim"],
+        plan: ["/img/sala-c/planta-sala-c-neutro-fundo.svg", "Desenho simplificado do Estúdio C: técnica, sala de gravação, Estúdio D como booth extra, sound lock, visores entre as salas e janelas para o jardim"],
         // Fotos do site antigo — trocar pelas fotos novas da sala de gravação C.
         photos: [
           ["/img/wix/a8c59c7b84c04ae6805d7ab30e2740c8.jpg", "Sala de gravação C com janela para o jardim"],

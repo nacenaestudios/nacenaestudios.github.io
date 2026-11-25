@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="680" height="440" viewBox="0 0 680 440" font-family="Rubik, Helvetica, Arial, sans-serif">
-  <!-- Desenho SIMPLIFICADO da Sala C, baseado na planta WSDG do térreo (folhas A1.11 e A1.12). Medidas aproximadas. -->
+  <!-- Desenho SIMPLIFICADO da Sala C, baseado na planta WSDG do térreo (folhas A1.11 e A1.12). Medidas aproximadas.
+       Estúdio D = "Sala de edição" da planta WSDG (9,23 m²), ao lado do sound lock, usado como booth extra de gravação. -->
   <rect width="680" height="440" fill="#0b0a09"/>
 
   <!-- Jardim (lado direito) -->
@@ -10,6 +11,14 @@
   <path d="M256 18 L338 20 L468 57 L468 195 L340 225 L256 225 Z" fill="#1d1a17" stroke="#e9e6e1" stroke-width="3" stroke-linejoin="round"/>
   <text x="355" y="118" fill="#ffffff" font-size="17" font-weight="700" text-anchor="middle">TÉCNICA C</text>
   <text x="355" y="140" fill="#d9d4cd" font-size="15" font-weight="500" text-anchor="middle">≈ 13 m²</text>
+
+  <!-- Estúdio D (booth extra de gravação) -->
+  <path d="M40 246 L186 244 L190 296 L186 330 L190 408 L50 410 L36 330 Z" fill="#24201c" stroke="#e9e6e1" stroke-width="3" stroke-linejoin="round"/>
+  <text x="113" y="322" fill="#ffffff" font-size="16" font-weight="700" text-anchor="middle">ESTÚDIO D</text>
+  <text x="113" y="342" fill="#d9d4cd" font-size="13" font-weight="500" text-anchor="middle">booth extra · ≈ 9 m²</text>
+  <!-- porta do Estúdio D para o sound lock -->
+  <line x1="187" y1="254" x2="188" y2="278" stroke="#24201c" stroke-width="7"/>
+  <path d="M188 254 A24 24 0 0 1 166 276" fill="none" stroke="#6f6962" stroke-width="1.5" stroke-dasharray="3 3"/>
 
   <!-- Sound lock -->
   <rect x="196" y="240" width="56" height="44" fill="#1d1a17" stroke="#4a443e" stroke-width="2"/>
@@ -26,6 +35,11 @@
   <line x1="362" y1="249" x2="422" y2="249" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
   <line x1="392" y1="214" x2="392" y2="244" stroke="#d9d4cd" stroke-width="1.5" stroke-dasharray="3 3"/>
 
+  <!-- Visor acústico entre o Estúdio D e a sala de gravação C -->
+  <line x1="188" y1="352" x2="189" y2="386" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
+  <line x1="222" y1="352" x2="214" y2="378" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
+  <line x1="190" y1="368" x2="216" y2="366" stroke="#d9d4cd" stroke-width="1.5" stroke-dasharray="3 3"/>
+
   <!-- Janelas para o jardim (luz natural) -->
   <line x1="468" y1="80" x2="468" y2="168" stroke="#7fc97a" stroke-width="6" stroke-linecap="round"/>
   <line x1="471" y1="300" x2="470" y2="372" stroke="#7fc97a" stroke-width="6" stroke-linecap="round"/>
@@ -36,12 +50,12 @@
   <path d="M256 188 A28 28 0 0 0 230 214" fill="none" stroke="#6f6962" stroke-width="1.5" stroke-dasharray="3 3"/>
 
   <!-- Legenda -->
-  <line x1="40" y1="356" x2="60" y2="356" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
-  <text x="68" y="360" fill="#e6e1da" font-size="14">visor acústico</text>
-  <line x1="40" y1="378" x2="60" y2="378" stroke="#7fc97a" stroke-width="6" stroke-linecap="round"/>
-  <text x="68" y="382" fill="#e6e1da" font-size="14">janela (luz natural)</text>
-  <line x1="40" y1="400" x2="60" y2="400" stroke="#6f6962" stroke-width="1.5" stroke-dasharray="3 3"/>
-  <text x="68" y="404" fill="#e6e1da" font-size="14">porta acústica</text>
+  <line x1="40" y1="40" x2="60" y2="40" stroke="#d9d4cd" stroke-width="6" stroke-linecap="round"/>
+  <text x="68" y="45" fill="#e6e1da" font-size="14">visor acústico</text>
+  <line x1="40" y1="64" x2="60" y2="64" stroke="#7fc97a" stroke-width="6" stroke-linecap="round"/>
+  <text x="68" y="69" fill="#e6e1da" font-size="14">janela (luz natural)</text>
+  <line x1="40" y1="88" x2="60" y2="88" stroke="#6f6962" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="68" y="93" fill="#e6e1da" font-size="14">porta acústica</text>
 
   <!-- Cota da sala de gravação -->
   <line x1="200" y1="420" x2="468" y2="420" stroke="#6f6962" stroke-width="1"/>
