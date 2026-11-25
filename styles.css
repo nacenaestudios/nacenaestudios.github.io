@@ -1161,3 +1161,6 @@ body:not([data-area="cursos"]) .site-footer { padding: 24px 0; }
 /* Contato: campo que falta preencher */
 .cc-form .field.missing > label { color: var(--accent); }
 .cc-form .field.missing input { border-bottom-color: var(--accent); }
+
+/* Títulos de serviço que quebram em 2 linhas (ex.: "Gravação Multitrack"): espaço para o Ç não encostar na linha de baixo */
+.svc-index h2 { line-height: 1.08; }
